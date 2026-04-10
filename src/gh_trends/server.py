@@ -10,6 +10,7 @@ from __future__ import annotations
 from typing import Any, Literal
 
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 
 from .fetcher import fetch_trending as _fetch_trending
 
@@ -22,8 +23,11 @@ mcp = FastMCP(
         "Use the fetch_trending tool to get a JSON snapshot of currently "
         "trending repos, optionally filtered by language and time window."
     ),
-    host="127.0.0.1",
+    host="0.0.0.0",
     port=MCP_PORT,
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=False,
+    ),
 )
 
 
