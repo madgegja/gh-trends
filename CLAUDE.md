@@ -38,7 +38,15 @@ digests/         # generated markdown digests (gitignored except .gitkeep)
 
 ## MCP server
 
-`gh-trends serve` launches a stdio MCP server (`mcp.server.fastmcp.FastMCP`) that exposes `fetch_trending(language, window) -> snapshot dict`. Configure an MCP client (Claude Desktop, Claude Code, etc.) like:
+`gh-trends serve` launches the MCP server exposing `fetch_trending(language, window) -> snapshot dict`.
+
+### stdio (local MCP clients)
+
+```bash
+gh-trends serve            # default: stdio
+```
+
+Configure an MCP client (Claude Desktop, Claude Code, etc.):
 
 ```json
 {
@@ -51,7 +59,50 @@ digests/         # generated markdown digests (gitignored except .gitkeep)
 }
 ```
 
-The server only exposes raw structured data — summarization is intentionally left to the calling client's own model.
+### streamable-http (network / remote clients)
+
+```bash
+gh-trends serve -t streamable-http   # uvicorn on 0.0.0.0:8000/mcp
+```
+
+Public endpoint via Cloudflare Tunnel:
+
+```
+https://gh-trends.csy-p.com/mcp
+https://mcp.csy-p.com/mcp
+```
+
+Configure a remote MCP client:
+
+```json
+{
+  "mcpServers": {
+    "gh-trends": {
+      "type": "streamable-http",
+      "url": "https://gh-trends.csy-p.com/mcp"
+    }
+  }
+}
+```
+
+The server only exposes raw structured data — summarization is intentionally left to the calling client's own model. DNS rebinding protection is disabled because external auth is handled at the Cloudflare/Caddy edge.
+
+## Infrastructure
+
+All infra lives outside this repo (nothing to commit):
+
+| Service | systemd unit | What it does |
+|---|---|---|
+| `gh-trends-mcp` | enabled | MCP HTTP on `:8000` (auto-restart on failure) |
+| `cloudflared` | enabled | Cloudflare Tunnel `gh-trends` → `:8000` |
+| `caddy` | enabled | HTTPS termination for `*.csy-p.duckdns.org` (local access) |
+
+```
+Internet → Cloudflare Edge (HTTPS) → Tunnel → 127.0.0.1:8000 (MCP)
+LAN      → Caddy :443 (Let's Encrypt wildcard) → 127.0.0.1:8000
+```
+
+Domain `csy-p.com` is registered on Cloudflare. Duck DNS `csy-p.duckdns.org` handles dynamic IP for the local Caddy path. ISP (LG U+) blocks inbound ports, hence the Cloudflare Tunnel.
 
 ## Out of scope (for now)
 
