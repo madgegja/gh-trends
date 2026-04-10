@@ -1,6 +1,6 @@
 ---
 name: review
-description: Fix-First code review — auto-fix obvious issues, batch-ask the rest
+description: Fix-First code review — auto-fix obvious issues, batch-ask the rest. TRIGGER when user says "review", "PR", "check code", "리뷰", or before committing significant changes. Also auto-apply on /commit if changes span 3+ files.
 ---
 
 # Code Review (Fix-First)

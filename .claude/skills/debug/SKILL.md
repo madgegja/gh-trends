@@ -1,6 +1,6 @@
 ---
 name: debug
-description: Systematic debugging — root cause investigation before any fix
+description: Systematic debugging — root cause investigation before any fix. TRIGGER when encountering errors, stack traces, failing tests, or user says "bug", "broken", "not working", "crash". Phase 1 investigation is mandatory before any fix attempt.
 ---
 
 # Systematic Debugging

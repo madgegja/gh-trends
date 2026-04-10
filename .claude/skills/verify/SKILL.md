@@ -1,6 +1,6 @@
 ---
 name: verify
-description: Verification gate — no completion claims without fresh evidence
+description: Verification gate — no completion claims without fresh evidence. TRIGGER automatically before any "done", "fixed", "working", "complete" claim. Always run verification commands before reporting success.
 ---
 
 # Verification Before Completion

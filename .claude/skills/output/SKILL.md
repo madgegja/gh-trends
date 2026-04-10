@@ -1,6 +1,6 @@
 ---
 name: output
-description: Full output enforcement — no placeholders, no truncation, complete code only
+description: Full output enforcement — no placeholders, no truncation, complete code only. TRIGGER when generating code files, implementing features, or user asks for "full code", "complete implementation". Always active — never produce `// ...` or `// TODO` placeholders.
 ---
 
 # Full Output Enforcement

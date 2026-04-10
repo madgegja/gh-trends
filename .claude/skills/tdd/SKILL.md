@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Test-Driven Development — RED-GREEN-REFACTOR with pytest
+description: Test-Driven Development — RED-GREEN-REFACTOR with pytest. TRIGGER when writing new functions, adding features, or user mentions "test", "TDD", "coverage". Auto-apply the Iron Law before any production code.
 ---
 
 # TDD (Test-Driven Development)

@@ -1,6 +1,6 @@
 ---
 name: frontend
-description: Premium frontend design rules — anti-generic UI, typography, color, layout, interactivity
+description: Premium frontend design rules — anti-generic UI, typography, color, layout, interactivity. TRIGGER when creating HTML/CSS/React/Vue/Svelte components, UI mockups, dashboards, or any visual interface. Auto-apply design variance and AI-tell prevention.
 ---
 
 # Frontend Design Skill
