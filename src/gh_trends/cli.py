@@ -61,7 +61,7 @@ def digest(
     output_lang: DigestLang = typer.Option(
         "ko", "--lang", help="Digest language: ko or en"
     ),
-    model: str = typer.Option(DEFAULT_MODEL, "--model", help="Anthropic model id"),
+    model: str = typer.Option(DEFAULT_MODEL, "--model", help="Model name for the proxy"),
     save: bool = typer.Option(False, "--save", help="Persist the digest under digests/"),
 ) -> None:
     """Fetch trending and produce a Claude-summarized thematic digest."""

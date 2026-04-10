@@ -1,8 +1,7 @@
 """Summarize a TrendingSnapshot into a thematic markdown digest.
 
-Supports two modes (proxy-first, SDK-fallback):
-- Proxy mode: CLAUDE_PROXY_URL set → OpenAI-compatible endpoint (claude-max-api-proxy)
-- SDK mode:   ANTHROPIC_API_KEY set → Anthropic SDK directly
+Uses a Claude Max proxy (claude-max-api-proxy) via OpenAI-compatible endpoint.
+No API key needed — authentication is handled by the proxy's subscription token.
 """
 
 from __future__ import annotations
@@ -11,7 +10,6 @@ import os
 from typing import Literal
 
 import httpx
-from anthropic import Anthropic
 
 from .models import TrendingSnapshot
 
@@ -89,79 +87,40 @@ def build_prompt(snapshot: TrendingSnapshot, lang: DigestLang = "ko") -> str:
     )
 
 
-def _get_mode() -> tuple[str, str]:
-    """Return (mode, url_or_key). Proxy-first, SDK-fallback."""
-    proxy_url = os.environ.get("CLAUDE_PROXY_URL", "").strip()
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
-
-    if proxy_url:
-        return "proxy", proxy_url
-    if api_key:
-        return "sdk", api_key
-    return "none", ""
-
-
-def _summarize_proxy(prompt: str, model: str, proxy_url: str) -> str:
-    """Call the OpenAI-compatible proxy (claude-max-api-proxy)."""
-    url = f"{proxy_url.rstrip('/')}/chat/completions"
-    payload = {
-        "model": model,
-        "max_tokens": MAX_TOKENS,
-        "temperature": 0.3,
-        "messages": [
-            {"role": "user", "content": prompt},
-        ],
-    }
-    with httpx.Client(timeout=120.0) as client:
-        resp = client.post(url, json=payload)
-        resp.raise_for_status()
-    return resp.json()["choices"][0]["message"]["content"].strip()
-
-
-def _summarize_sdk(prompt: str, model: str, api_key: str) -> str:
-    """Call the Anthropic SDK directly."""
-    client = Anthropic(api_key=api_key)
-    response = client.messages.create(
-        model=model,
-        max_tokens=MAX_TOKENS,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    parts = [block.text for block in response.content if getattr(block, "type", None) == "text"]
-    return "".join(parts).strip()
-
-
 def summarize(
     snapshot: TrendingSnapshot,
     *,
     lang: DigestLang = "ko",
     model: str = DEFAULT_MODEL,
-    api_key: str | None = None,
+    proxy_url: str | None = None,
 ) -> str:
-    """Generate a markdown digest. Proxy-first, SDK-fallback.
+    """Generate a markdown digest via the Claude Max proxy.
 
-    Routing:
-    - CLAUDE_PROXY_URL set → OpenAI-compatible proxy (claude-max-api-proxy)
-    - ANTHROPIC_API_KEY set → Anthropic SDK directly
-    - api_key parameter → forces SDK mode regardless of env
-    - Neither → RuntimeError
+    Args:
+        snapshot: The trending data to summarize.
+        lang: Output language (ko or en).
+        model: Model name to pass to the proxy.
+        proxy_url: Override for CLAUDE_PROXY_URL env var.
     """
     if not snapshot.repos:
         return "_(빈 스냅샷 — 디지스트할 레포가 없습니다.)_"
 
+    url = proxy_url or os.environ.get("CLAUDE_PROXY_URL", "").strip()
+    if not url:
+        url = DEFAULT_PROXY_URL
+
     prompt = build_prompt(snapshot, lang=lang)
+    endpoint = f"{url.rstrip('/')}/chat/completions"
 
-    # Explicit api_key parameter forces SDK mode
-    if api_key:
-        return _summarize_sdk(prompt, model, api_key)
+    payload = {
+        "model": model,
+        "max_tokens": MAX_TOKENS,
+        "temperature": 0.3,
+        "messages": [{"role": "user", "content": prompt}],
+    }
 
-    mode, value = _get_mode()
+    with httpx.Client(timeout=120.0) as client:
+        resp = client.post(endpoint, json=payload)
+        resp.raise_for_status()
 
-    if mode == "proxy":
-        return _summarize_proxy(prompt, model, value)
-    elif mode == "sdk":
-        return _summarize_sdk(prompt, model, value)
-    else:
-        raise RuntimeError(
-            "Neither CLAUDE_PROXY_URL nor ANTHROPIC_API_KEY is set. "
-            "Set one of them or pass api_key= explicitly."
-        )
+    return resp.json()["choices"][0]["message"]["content"].strip()
