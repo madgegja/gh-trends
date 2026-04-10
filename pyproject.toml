@@ -2,6 +2,7 @@
 name = "gh-trends"
 version = "0.1.0"
 description = "Fetch, analyze, and digest GitHub trending repositories with LLM-assisted summarization."
+readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "jooyu" }]
