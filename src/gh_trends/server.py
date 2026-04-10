@@ -13,6 +13,8 @@ from mcp.server.fastmcp import FastMCP
 
 from .fetcher import fetch_trending as _fetch_trending
 
+MCP_PORT = 8000
+
 mcp = FastMCP(
     "gh-trends",
     instructions=(
@@ -20,6 +22,8 @@ mcp = FastMCP(
         "Use the fetch_trending tool to get a JSON snapshot of currently "
         "trending repos, optionally filtered by language and time window."
     ),
+    host="127.0.0.1",
+    port=MCP_PORT,
 )
 
 
@@ -51,9 +55,12 @@ async def fetch_trending(
     return snapshot.model_dump(mode="json")
 
 
-def main() -> None:
+Transport = Literal["stdio", "sse", "streamable-http"]
+
+
+def main(transport: Transport = "stdio") -> None:
     """Entrypoint used by `gh-trends serve`."""
-    mcp.run(transport="stdio")
+    mcp.run(transport=transport)
 
 
 if __name__ == "__main__":

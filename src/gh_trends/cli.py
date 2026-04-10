@@ -79,11 +79,18 @@ def digest(
 
 
 @app.command()
-def serve() -> None:
-    """Launch the MCP stdio server. Configure your MCP client to spawn this."""
+def serve(
+    transport: str = typer.Option(
+        "stdio",
+        "--transport",
+        "-t",
+        help="stdio (for MCP clients) | streamable-http (network, port 8000)",
+    ),
+) -> None:
+    """Launch the MCP server. Use --transport streamable-http for network access."""
     from .server import main as serve_main
 
-    serve_main()
+    serve_main(transport=transport)
 
 
 @app.command()
