@@ -1,0 +1,39 @@
+[project]
+name = "gh-trends"
+version = "0.1.0"
+description = "Fetch, analyze, and digest GitHub trending repositories with LLM-assisted summarization."
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "jooyu" }]
+dependencies = [
+    "httpx>=0.27",
+    "selectolax>=0.3.21",
+    "pydantic>=2.7",
+    "typer>=0.12",
+    "rich>=13.7",
+    "anthropic>=0.39",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.5",
+]
+
+[project.scripts]
+gh-trends = "gh_trends.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gh_trends"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
