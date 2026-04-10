@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import json as json_mod
 from pathlib import Path
 from typing import Optional
 
@@ -76,6 +77,60 @@ def digest(
         path.parent.mkdir(exist_ok=True)
         path.write_text(text + "\n", encoding="utf-8")
         console.print(f"\n[dim]Saved → {path}[/dim]")
+
+
+@app.command()
+def daily(
+    extra_lang: Optional[str] = typer.Option(
+        None, "--extra", "-e", help="Additional language besides overall + python."
+    ),
+) -> None:
+    """Run the daily digest pipeline: fetch + optional LLM digest, saved to digests/.
+
+    Always saves raw JSON snapshots. If the Claude proxy is available,
+    also generates a markdown digest.
+    """
+    import httpx as _httpx
+    from datetime import date
+
+    today = date.today().isoformat()
+    digests_dir = Path("digests")
+    digests_dir.mkdir(exist_ok=True)
+
+    scopes = [("overall", None), ("python", "python")]
+    if extra_lang:
+        scopes.append((extra_lang, extra_lang))
+
+    snapshots = {}
+    for label, lang in scopes:
+        snap = asyncio.run(fetch_trending(language=lang, window="weekly"))
+        snapshots[label] = snap
+        json_path = digests_dir / f"{today}-{label}-weekly.json"
+        json_path.write_text(
+            json_mod.dumps(snap.model_dump(mode="json"), ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        console.print(f"[dim]Saved snapshot → {json_path}[/dim]")
+
+    # Attempt LLM digest via proxy (graceful skip if proxy is down)
+    try:
+        _httpx.get("http://127.0.0.1:3456/v1/models", timeout=3.0)
+        proxy_up = True
+    except Exception:
+        proxy_up = False
+
+    if proxy_up:
+        parts = [f"# GitHub trending digest — {today}\n"]
+        for label, snap in snapshots.items():
+            text = summarize(snap, lang="ko")
+            parts.append(text)
+            parts.append("")
+        digest_text = "\n".join(parts)
+        md_path = digests_dir / f"{today}.md"
+        md_path.write_text(digest_text + "\n", encoding="utf-8")
+        console.print(f"[bold green]Digest saved → {md_path}[/bold green]")
+    else:
+        console.print("[yellow]Proxy not running — skipped LLM digest, JSON snapshots saved.[/yellow]")
 
 
 @app.command()
