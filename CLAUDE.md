@@ -17,13 +17,15 @@ A Python tool that fetches GitHub trending repositories, parses them into typed 
 ```
 src/gh_trends/
   __init__.py
-  models.py     # TrendingRepo, TrendingSnapshot, Window
-  fetcher.py    # async fetch_trending(language, window)
-  cli.py        # `gh-trends fetch ...`, `gh-trends version`
-digests/        # generated markdown digests (gitignored except .gitkeep)
+  models.py      # TrendingRepo, TrendingSnapshot, Window
+  fetcher.py     # async fetch_trending(language, window)
+  summarizer.py  # Anthropic-backed thematic digest (ko/en)
+  server.py      # FastMCP stdio server exposing fetch_trending
+  cli.py         # `gh-trends fetch | digest | serve | version`
+digests/         # generated markdown digests (gitignored except .gitkeep)
 .claude/
-  agents/       # trend-researcher, repo-deep-dive
-  skills/       # trend-fetch, repo-eval, daily-digest
+  agents/        # trend-researcher, repo-deep-dive
+  skills/        # trend-fetch, repo-eval, daily-digest
 ```
 
 ## Conventions
@@ -34,8 +36,25 @@ digests/        # generated markdown digests (gitignored except .gitkeep)
 - Use the `repo-deep-dive` subagent for any single-repo evaluation.
 - Slash commands: `/trend-fetch [lang] [window]`, `/repo-eval owner/repo`, `/daily-digest [extra-lang]`.
 
+## MCP server
+
+`gh-trends serve` launches a stdio MCP server (`mcp.server.fastmcp.FastMCP`) that exposes `fetch_trending(language, window) -> snapshot dict`. Configure an MCP client (Claude Desktop, Claude Code, etc.) like:
+
+```json
+{
+  "mcpServers": {
+    "gh-trends": {
+      "command": "uv",
+      "args": ["--directory", "/home/jooyu/claude-projects", "run", "gh-trends", "serve"]
+    }
+  }
+}
+```
+
+The server only exposes raw structured data — summarization is intentionally left to the calling client's own model.
+
 ## Out of scope (for now)
 
-- MCP server export (planned, not built).
 - Persisting snapshots to a database. JSON/markdown only.
 - Authentication with the GitHub API — public trending pages don't require it.
+- Additional MCP tools beyond `fetch_trending` (e.g. `evaluate_repo`) — add only when a concrete client need appears.

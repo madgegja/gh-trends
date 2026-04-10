@@ -79,6 +79,14 @@ def digest(
 
 
 @app.command()
+def serve() -> None:
+    """Launch the MCP stdio server. Configure your MCP client to spawn this."""
+    from .server import main as serve_main
+
+    serve_main()
+
+
+@app.command()
 def version() -> None:
     """Print the package version."""
     from . import __version__
