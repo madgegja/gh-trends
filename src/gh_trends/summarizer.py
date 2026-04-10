@@ -1,16 +1,23 @@
-"""Summarize a TrendingSnapshot into a thematic markdown digest via the Anthropic API."""
+"""Summarize a TrendingSnapshot into a thematic markdown digest.
+
+Supports two modes (proxy-first, SDK-fallback):
+- Proxy mode: CLAUDE_PROXY_URL set → OpenAI-compatible endpoint (claude-max-api-proxy)
+- SDK mode:   ANTHROPIC_API_KEY set → Anthropic SDK directly
+"""
 
 from __future__ import annotations
 
 import os
 from typing import Literal
 
+import httpx
 from anthropic import Anthropic
 
 from .models import TrendingSnapshot
 
 DigestLang = Literal["ko", "en"]
-DEFAULT_MODEL = "claude-opus-4-6"
+DEFAULT_MODEL = "claude-sonnet-4-20250514"
+DEFAULT_PROXY_URL = "http://127.0.0.1:3456/v1"
 MAX_TOKENS = 4096
 
 _PROMPT_KO = """다음은 GitHub trending 스냅샷입니다. 이를 분석해 정확히 아래 형식의 마크다운 디지스트를 작성하세요. 마크다운 외 다른 텍스트는 출력하지 마세요.
@@ -82,6 +89,47 @@ def build_prompt(snapshot: TrendingSnapshot, lang: DigestLang = "ko") -> str:
     )
 
 
+def _get_mode() -> tuple[str, str]:
+    """Return (mode, url_or_key). Proxy-first, SDK-fallback."""
+    proxy_url = os.environ.get("CLAUDE_PROXY_URL", "").strip()
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
+
+    if proxy_url:
+        return "proxy", proxy_url
+    if api_key:
+        return "sdk", api_key
+    return "none", ""
+
+
+def _summarize_proxy(prompt: str, model: str, proxy_url: str) -> str:
+    """Call the OpenAI-compatible proxy (claude-max-api-proxy)."""
+    url = f"{proxy_url.rstrip('/')}/chat/completions"
+    payload = {
+        "model": model,
+        "max_tokens": MAX_TOKENS,
+        "temperature": 0.3,
+        "messages": [
+            {"role": "user", "content": prompt},
+        ],
+    }
+    with httpx.Client(timeout=120.0) as client:
+        resp = client.post(url, json=payload)
+        resp.raise_for_status()
+    return resp.json()["choices"][0]["message"]["content"].strip()
+
+
+def _summarize_sdk(prompt: str, model: str, api_key: str) -> str:
+    """Call the Anthropic SDK directly."""
+    client = Anthropic(api_key=api_key)
+    response = client.messages.create(
+        model=model,
+        max_tokens=MAX_TOKENS,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    parts = [block.text for block in response.content if getattr(block, "type", None) == "text"]
+    return "".join(parts).strip()
+
+
 def summarize(
     snapshot: TrendingSnapshot,
     *,
@@ -89,24 +137,31 @@ def summarize(
     model: str = DEFAULT_MODEL,
     api_key: str | None = None,
 ) -> str:
-    """Call the Anthropic API and return a markdown digest."""
+    """Generate a markdown digest. Proxy-first, SDK-fallback.
+
+    Routing:
+    - CLAUDE_PROXY_URL set → OpenAI-compatible proxy (claude-max-api-proxy)
+    - ANTHROPIC_API_KEY set → Anthropic SDK directly
+    - api_key parameter → forces SDK mode regardless of env
+    - Neither → RuntimeError
+    """
     if not snapshot.repos:
         return "_(빈 스냅샷 — 디지스트할 레포가 없습니다.)_"
 
-    key = api_key or os.environ.get("ANTHROPIC_API_KEY")
-    if not key:
-        raise RuntimeError(
-            "ANTHROPIC_API_KEY is not set. Export it or pass api_key= explicitly."
-        )
-
-    client = Anthropic(api_key=key)
     prompt = build_prompt(snapshot, lang=lang)
 
-    response = client.messages.create(
-        model=model,
-        max_tokens=MAX_TOKENS,
-        messages=[{"role": "user", "content": prompt}],
-    )
+    # Explicit api_key parameter forces SDK mode
+    if api_key:
+        return _summarize_sdk(prompt, model, api_key)
 
-    parts = [block.text for block in response.content if getattr(block, "type", None) == "text"]
-    return "".join(parts).strip()
+    mode, value = _get_mode()
+
+    if mode == "proxy":
+        return _summarize_proxy(prompt, model, value)
+    elif mode == "sdk":
+        return _summarize_sdk(prompt, model, value)
+    else:
+        raise RuntimeError(
+            "Neither CLAUDE_PROXY_URL nor ANTHROPIC_API_KEY is set. "
+            "Set one of them or pass api_key= explicitly."
+        )
