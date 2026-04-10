@@ -28,7 +28,12 @@ digests/*.md
 # Claude Code local-only settings
 .claude/settings.local.json
 
-# Secrets
+# Secrets — never commit any of these
 .env
 .env.*
 !.env.example
+*.token
+*.secret
+*credentials*
+duckdns*
+.duckdns/
