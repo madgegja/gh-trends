@@ -1,0 +1,151 @@
+{
+  "fetched_on": "2026-04-10",
+  "window": "weekly",
+  "language": "python",
+  "repos": [
+    {
+      "owner": "NousResearch",
+      "name": "hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
+      "language": "Python",
+      "stars_total": 47192,
+      "stars_window": 19765
+    },
+    {
+      "owner": "HKUDS",
+      "name": "DeepTutor",
+      "url": "https://github.com/HKUDS/DeepTutor",
+      "description": "\"DeepTutor: Agent-Native Personalized Learning Assistant\"",
+      "language": "Python",
+      "stars_total": 15303,
+      "stars_window": 3233
+    },
+    {
+      "owner": "onyx-dot-app",
+      "name": "onyx",
+      "url": "https://github.com/onyx-dot-app/onyx",
+      "description": "Open Source AI Platform - AI Chat with advanced features that works with every LLM",
+      "language": "Python",
+      "stars_total": 26263,
+      "stars_window": 5556
+    },
+    {
+      "owner": "google-research",
+      "name": "timesfm",
+      "url": "https://github.com/google-research/timesfm",
+      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
+      "language": "Python",
+      "stars_total": 16074,
+      "stars_window": 3095
+    },
+    {
+      "owner": "NVIDIA",
+      "name": "personaplex",
+      "url": "https://github.com/NVIDIA/personaplex",
+      "description": "PersonaPlex code.",
+      "language": "Python",
+      "stars_total": 8814,
+      "stars_window": 2745
+    },
+    {
+      "owner": "luongnv89",
+      "name": "claude-howto",
+      "url": "https://github.com/luongnv89/claude-howto",
+      "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
+      "language": "Python",
+      "stars_total": 24251,
+      "stars_window": 7342
+    },
+    {
+      "owner": "google-deepmind",
+      "name": "gemma",
+      "url": "https://github.com/google-deepmind/gemma",
+      "description": "Gemma open-weight LLM library, from Google DeepMind",
+      "language": "Python",
+      "stars_total": 4689,
+      "stars_window": 534
+    },
+    {
+      "owner": "sherlock-project",
+      "name": "sherlock",
+      "url": "https://github.com/sherlock-project/sherlock",
+      "description": "Hunt down social media accounts by username across social networks",
+      "language": "Python",
+      "stars_total": 80714,
+      "stars_window": 3980
+    },
+    {
+      "owner": "microsoft",
+      "name": "agent-framework",
+      "url": "https://github.com/microsoft/agent-framework",
+      "description": "A framework for building, orchestrating and deploying AI agents and multi-agent workflows with support for Python and .NET.",
+      "language": "Python",
+      "stars_total": 9247,
+      "stars_window": 838
+    },
+    {
+      "owner": "HKUDS",
+      "name": "LightRAG",
+      "url": "https://github.com/HKUDS/LightRAG",
+      "description": "[EMNLP2025] \"LightRAG: Simple and Fast Retrieval-Augmented Generation\"",
+      "language": "Python",
+      "stars_total": 32812,
+      "stars_window": 1290
+    },
+    {
+      "owner": "punitarani",
+      "name": "fli",
+      "url": "https://github.com/punitarani/fli",
+      "description": "Google Flights MCP and Python Library",
+      "language": "Python",
+      "stars_total": 1723,
+      "stars_window": 744
+    },
+    {
+      "owner": "HKUDS",
+      "name": "RAG-Anything",
+      "url": "https://github.com/HKUDS/RAG-Anything",
+      "description": "\"RAG-Anything: All-in-One RAG Framework\"",
+      "language": "Python",
+      "stars_total": 15484,
+      "stars_window": 632
+    },
+    {
+      "owner": "vectorize-io",
+      "name": "hindsight",
+      "url": "https://github.com/vectorize-io/hindsight",
+      "description": "Hindsight: Agent Memory That Learns",
+      "language": "Python",
+      "stars_total": 8760,
+      "stars_window": 1728
+    },
+    {
+      "owner": "TheCraigHewitt",
+      "name": "seomachine",
+      "url": "https://github.com/TheCraigHewitt/seomachine",
+      "description": "A specialized Claude Code workspace for creating long-form, SEO-optimized blog content for any business. This system helps you research, write, analyze, and optimize content that ranks well and serves your target audience.",
+      "language": "Python",
+      "stars_total": 5345,
+      "stars_window": 2112
+    },
+    {
+      "owner": "ml-explore",
+      "name": "mlx-lm",
+      "url": "https://github.com/ml-explore/mlx-lm",
+      "description": "Run LLMs with MLX",
+      "language": "Python",
+      "stars_total": 4651,
+      "stars_window": 282
+    },
+    {
+      "owner": "Open-LLM-VTuber",
+      "name": "Open-LLM-VTuber",
+      "url": "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber",
+      "description": "Talk to any LLM with hands-free voice interaction, voice interruption, and Live2D taking face running locally across platforms",
+      "language": "Python",
+      "stars_total": 6791,
+      "stars_window": 359
+    }
+  ]
+}

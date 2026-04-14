@@ -35,6 +35,9 @@ digests/         # generated markdown digests (gitignored except .gitkeep)
 - Use the `trend-researcher` subagent for any "what's trending" question — don't WebFetch from the main loop.
 - Use the `repo-deep-dive` subagent for any single-repo evaluation.
 - Slash commands: `/trend-fetch [lang] [window]`, `/repo-eval owner/repo`, `/daily-digest [extra-lang]`.
+- Autoresearch: `/autoresearch`, `/autoresearch:fix`, `/autoresearch:security`, `/autoresearch:learn`
+  - 자연어 트리거: "자동 개선", "auto improve", "autoresearch", "자율 루프", "밤새 개선", "코드 개선 루프", "자동 수정", "auto fix", "보안 감사", "security audit"
+  - 벤치마크: `uv run pytest --tb=no -q`
 
 ## MCP server
 

@@ -1,0 +1,97 @@
+{
+  "fetched_on": "2026-04-14",
+  "window": "weekly",
+  "language": null,
+  "repos": [
+    {
+      "owner": "forrestchang",
+      "name": "andrej-karpathy-skills",
+      "url": "https://github.com/forrestchang/andrej-karpathy-skills",
+      "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+      "language": null,
+      "stars_total": 25401,
+      "stars_window": 14317
+    },
+    {
+      "owner": "NousResearch",
+      "name": "hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
+      "language": "Python",
+      "stars_total": 77389,
+      "stars_window": 48286
+    },
+    {
+      "owner": "multica-ai",
+      "name": "multica",
+      "url": "https://github.com/multica-ai/multica",
+      "description": "The open-source managed agents platform. Turn coding agents into real teammates — assign tasks, track progress, compound skills.",
+      "language": "TypeScript",
+      "stars_total": 11166,
+      "stars_window": 8580
+    },
+    {
+      "owner": "HKUDS",
+      "name": "DeepTutor",
+      "url": "https://github.com/HKUDS/DeepTutor",
+      "description": "\"DeepTutor: Agent-Native Personalized Learning Assistant\"",
+      "language": "Python",
+      "stars_total": 17761,
+      "stars_window": 6210
+    },
+    {
+      "owner": "coleam00",
+      "name": "Archon",
+      "url": "https://github.com/coleam00/Archon",
+      "description": "The first open-source harness builder for AI coding. Make AI coding deterministic and repeatable.",
+      "language": "TypeScript",
+      "stars_total": 17628,
+      "stars_window": 3647
+    },
+    {
+      "owner": "microsoft",
+      "name": "markitdown",
+      "url": "https://github.com/microsoft/markitdown",
+      "description": "Python tool for converting files and office documents to Markdown.",
+      "language": "Python",
+      "stars_total": 107007,
+      "stars_window": 13336
+    },
+    {
+      "owner": "google-ai-edge",
+      "name": "gallery",
+      "url": "https://github.com/google-ai-edge/gallery",
+      "description": "A gallery that showcases on-device ML/GenAI use cases and allows people to try and use models locally.",
+      "language": "Kotlin",
+      "stars_total": 20910,
+      "stars_window": 3273
+    },
+    {
+      "owner": "google-ai-edge",
+      "name": "LiteRT-LM",
+      "url": "https://github.com/google-ai-edge/LiteRT-LM",
+      "description": null,
+      "language": "C++",
+      "stars_total": 3670,
+      "stars_window": 1779
+    },
+    {
+      "owner": "NVIDIA",
+      "name": "personaplex",
+      "url": "https://github.com/NVIDIA/personaplex",
+      "description": "PersonaPlex code.",
+      "language": "Python",
+      "stars_total": 9211,
+      "stars_window": 2110
+    },
+    {
+      "owner": "TheCraigHewitt",
+      "name": "seomachine",
+      "url": "https://github.com/TheCraigHewitt/seomachine",
+      "description": "A specialized Claude Code workspace for creating long-form, SEO-optimized blog content for any business. This system helps you research, write, analyze, and optimize content that ranks well and serves your target audience.",
+      "language": "Python",
+      "stars_total": 6005,
+      "stars_window": 2548
+    }
+  ]
+}

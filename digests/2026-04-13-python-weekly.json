@@ -1,0 +1,124 @@
+{
+  "fetched_on": "2026-04-13",
+  "window": "weekly",
+  "language": "python",
+  "repos": [
+    {
+      "owner": "NousResearch",
+      "name": "hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
+      "language": "Python",
+      "stars_total": 65964,
+      "stars_window": 32572
+    },
+    {
+      "owner": "HKUDS",
+      "name": "DeepTutor",
+      "url": "https://github.com/HKUDS/DeepTutor",
+      "description": "\"DeepTutor: Agent-Native Personalized Learning Assistant\"",
+      "language": "Python",
+      "stars_total": 17213,
+      "stars_window": 5560
+    },
+    {
+      "owner": "microsoft",
+      "name": "markitdown",
+      "url": "https://github.com/microsoft/markitdown",
+      "description": "Python tool for converting files and office documents to Markdown.",
+      "language": "Python",
+      "stars_total": 104501,
+      "stars_window": 8202
+    },
+    {
+      "owner": "NVIDIA",
+      "name": "personaplex",
+      "url": "https://github.com/NVIDIA/personaplex",
+      "description": "PersonaPlex code.",
+      "language": "Python",
+      "stars_total": 9079,
+      "stars_window": 2905
+    },
+    {
+      "owner": "TheCraigHewitt",
+      "name": "seomachine",
+      "url": "https://github.com/TheCraigHewitt/seomachine",
+      "description": "A specialized Claude Code workspace for creating long-form, SEO-optimized blog content for any business. This system helps you research, write, analyze, and optimize content that ranks well and serves your target audience.",
+      "language": "Python",
+      "stars_total": 5783,
+      "stars_window": 2698
+    },
+    {
+      "owner": "luongnv89",
+      "name": "claude-howto",
+      "url": "https://github.com/luongnv89/claude-howto",
+      "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
+      "language": "Python",
+      "stars_total": 25610,
+      "stars_window": 6517
+    },
+    {
+      "owner": "hugohe3",
+      "name": "ppt-master",
+      "url": "https://github.com/hugohe3/ppt-master",
+      "description": "AI generates natively editable PPTX from any document — real PowerPoint shapes, not images — no design skills needed",
+      "language": "Python",
+      "stars_total": 4689,
+      "stars_window": 937
+    },
+    {
+      "owner": "HKUDS",
+      "name": "AI-Trader",
+      "url": "https://github.com/HKUDS/AI-Trader",
+      "description": "\"AI-Trader: 100% Fully-Automated Agent-Native Trading\"",
+      "language": "Python",
+      "stars_total": 13241,
+      "stars_window": 956
+    },
+    {
+      "owner": "google-deepmind",
+      "name": "gemma",
+      "url": "https://github.com/google-deepmind/gemma",
+      "description": "Gemma open-weight LLM library, from Google DeepMind",
+      "language": "Python",
+      "stars_total": 4806,
+      "stars_window": 423
+    },
+    {
+      "owner": "google-research",
+      "name": "timesfm",
+      "url": "https://github.com/google-research/timesfm",
+      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
+      "language": "Python",
+      "stars_total": 16535,
+      "stars_window": 1848
+    },
+    {
+      "owner": "Blaizzy",
+      "name": "mlx-vlm",
+      "url": "https://github.com/Blaizzy/mlx-vlm",
+      "description": "MLX-VLM is a package for inference and fine-tuning of Vision Language Models (VLMs) on your Mac using MLX.",
+      "language": "Python",
+      "stars_total": 4297,
+      "stars_window": 863
+    },
+    {
+      "owner": "vectorize-io",
+      "name": "hindsight",
+      "url": "https://github.com/vectorize-io/hindsight",
+      "description": "Hindsight: Agent Memory That Learns",
+      "language": "Python",
+      "stars_total": 9039,
+      "stars_window": 1624
+    },
+    {
+      "owner": "bytedance",
+      "name": "Protenix",
+      "url": "https://github.com/bytedance/Protenix",
+      "description": "Toward High-Accuracy Open-Source Biomolecular Structure Prediction.",
+      "language": "Python",
+      "stars_total": 1798,
+      "stars_window": 47
+    }
+  ]
+}

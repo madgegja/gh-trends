@@ -1,0 +1,133 @@
+{
+  "fetched_on": "2026-04-12",
+  "window": "weekly",
+  "language": "python",
+  "repos": [
+    {
+      "owner": "HKUDS",
+      "name": "DeepTutor",
+      "url": "https://github.com/HKUDS/DeepTutor",
+      "description": "\"DeepTutor: Agent-Native Personalized Learning Assistant\"",
+      "language": "Python",
+      "stars_total": 16719,
+      "stars_window": 4698
+    },
+    {
+      "owner": "NousResearch",
+      "name": "hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
+      "language": "Python",
+      "stars_total": 58587,
+      "stars_window": 26783
+    },
+    {
+      "owner": "NVIDIA",
+      "name": "personaplex",
+      "url": "https://github.com/NVIDIA/personaplex",
+      "description": "PersonaPlex code.",
+      "language": "Python",
+      "stars_total": 9011,
+      "stars_window": 2939
+    },
+    {
+      "owner": "microsoft",
+      "name": "markitdown",
+      "url": "https://github.com/microsoft/markitdown",
+      "description": "Python tool for converting files and office documents to Markdown.",
+      "language": "Python",
+      "stars_total": 102039,
+      "stars_window": 5214
+    },
+    {
+      "owner": "TheCraigHewitt",
+      "name": "seomachine",
+      "url": "https://github.com/TheCraigHewitt/seomachine",
+      "description": "A specialized Claude Code workspace for creating long-form, SEO-optimized blog content for any business. This system helps you research, write, analyze, and optimize content that ranks well and serves your target audience.",
+      "language": "Python",
+      "stars_total": 5677,
+      "stars_window": 2526
+    },
+    {
+      "owner": "google-research",
+      "name": "timesfm",
+      "url": "https://github.com/google-research/timesfm",
+      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
+      "language": "Python",
+      "stars_total": 16375,
+      "stars_window": 2481
+    },
+    {
+      "owner": "luongnv89",
+      "name": "claude-howto",
+      "url": "https://github.com/luongnv89/claude-howto",
+      "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
+      "language": "Python",
+      "stars_total": 25178,
+      "stars_window": 7215
+    },
+    {
+      "owner": "Blaizzy",
+      "name": "mlx-vlm",
+      "url": "https://github.com/Blaizzy/mlx-vlm",
+      "description": "MLX-VLM is a package for inference and fine-tuning of Vision Language Models (VLMs) on your Mac using MLX.",
+      "language": "Python",
+      "stars_total": 4282,
+      "stars_window": 948
+    },
+    {
+      "owner": "google-deepmind",
+      "name": "gemma",
+      "url": "https://github.com/google-deepmind/gemma",
+      "description": "Gemma open-weight LLM library, from Google DeepMind",
+      "language": "Python",
+      "stars_total": 4763,
+      "stars_window": 457
+    },
+    {
+      "owner": "onyx-dot-app",
+      "name": "onyx",
+      "url": "https://github.com/onyx-dot-app/onyx",
+      "description": "Open Source AI Platform - AI Chat with advanced features that works with every LLM",
+      "language": "Python",
+      "stars_total": 26584,
+      "stars_window": 3804
+    },
+    {
+      "owner": "punitarani",
+      "name": "fli",
+      "url": "https://github.com/punitarani/fli",
+      "description": "Google Flights MCP and Python Library",
+      "language": "Python",
+      "stars_total": 1831,
+      "stars_window": 745
+    },
+    {
+      "owner": "HKUDS",
+      "name": "AI-Trader",
+      "url": "https://github.com/HKUDS/AI-Trader",
+      "description": "\"AI-Trader: 100% Fully-Automated Agent-Native Trading\"",
+      "language": "Python",
+      "stars_total": 13115,
+      "stars_window": 716
+    },
+    {
+      "owner": "microsoft",
+      "name": "agent-framework",
+      "url": "https://github.com/microsoft/agent-framework",
+      "description": "A framework for building, orchestrating and deploying AI agents and multi-agent workflows with support for Python and .NET.",
+      "language": "Python",
+      "stars_total": 9332,
+      "stars_window": 845
+    },
+    {
+      "owner": "MervinPraison",
+      "name": "PraisonAI",
+      "url": "https://github.com/MervinPraison/PraisonAI",
+      "description": "PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerplate and start shipping autonomous agents that research, plan, code, and execute tasks. Deployed in 5 lines of code with built-in memory, RAG, and support for 100+ LLMs.",
+      "language": "Python",
+      "stars_total": 6902,
+      "stars_window": 455
+    }
+  ]
+}
